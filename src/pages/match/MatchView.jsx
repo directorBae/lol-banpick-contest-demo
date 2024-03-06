@@ -1,6 +1,23 @@
 import ChampionCard from "../../component/championCard";
+import { useState } from "react";
+import { useLocation } from "react-router-dom";
 
-const GetMatchData = () => {};
+const GetMatchData = () => {
+  let location = useLocation();
+  const authKey = location.state.authKey;
+};
+
+const PostMatchData = async ({ match_id }) => {
+  const [answer, setAnswer] = useState("");
+
+  let location = useLocation();
+  const authKey = location.state.authKey;
+  const response = await fetch("http://localhost:3001/api/submit", {});
+  const data = await response.json();
+  setAnswer(data.answer);
+
+  return { answer, setAnswer };
+};
 
 const RoundUpMessage = ({ data, roundNum }) => {
   if (data && roundNum !== 10) {

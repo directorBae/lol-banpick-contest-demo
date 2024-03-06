@@ -2,11 +2,11 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const DescriptionWindow = ({ submitStatus, navigator }) => {
+const DescriptionWindow = ({ submitStatus, navigator, authKey }) => {
   return (
     <div
       style={{
-        visibility: submitStatus ? "visible" : "hidden",
+        visibility: submitStatus === 200 ? "visible" : "hidden",
         position: "absolute",
         width: "100%",
         display: "flex",
@@ -63,7 +63,7 @@ const DescriptionWindow = ({ submitStatus, navigator }) => {
             justifyContent: "center",
             alignItems: "center",
           }}
-          onClick={() => navigator("match")}
+          onClick={() => navigator("match", { state: { auth: authKey } })}
         >
           예측 시작하기
         </div>
@@ -77,17 +77,18 @@ const SubmitForm = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [lolNickname, setLolNickname] = useState("");
   const [studentId, setStudentId] = useState("");
-  const [response, setResponse] = useState("");
+  const [responseStatus, setResponseStatus] = useState("");
+  const [authKey, setAuthKey] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     if (username === "" || phoneNumber === "" || studentId === "") {
       return;
     }
     e.preventDefault();
-    // fetch("http://localhost:3001/api/submit", {...})
-    // setResponse(response);
     console.log(username, phoneNumber, lolNickname, studentId);
-    setResponse(true);
+    const response = await fetch("http://localhost:3001/api/submit", {});
+    setResponseStatus(response.status);
+    setAuthKey(response.auth_key);
   };
 
   return {
@@ -99,8 +100,10 @@ const SubmitForm = () => {
     setLolNickname,
     studentId,
     setStudentId,
-    response,
-    setResponse,
+    responseStatus,
+    setResponseStatus,
+    authKey,
+    setAuthKey,
     handleSubmit,
   };
 };
@@ -116,8 +119,10 @@ const LoginView = () => {
     setLolNickname,
     studentId,
     setStudentId,
-    response,
-    setResponse,
+    responseStatus,
+    setResponseStatus,
+    authKey,
+    setAuthKey,
     handleSubmit,
   } = SubmitForm();
 
@@ -138,14 +143,18 @@ const LoginView = () => {
         position: "absolute",
       }}
     >
-      <DescriptionWindow submitStatus={response} navigator={navigate} />
+      <DescriptionWindow
+        submitStatus={responseStatus}
+        navigator={navigate}
+        authKey={authKey}
+      />
       <form
         style={{
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          visibility: response ? "hidden" : "visible",
+          visibility: responseStatus ? "hidden" : "visible",
         }}
         onSubmit={handleSubmit}
       >
