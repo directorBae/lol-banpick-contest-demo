@@ -3,18 +3,26 @@ import { useState } from "react";
 import { useLocation } from "react-router-dom";
 
 const GetMatchData = () => {
+  const [matchId, setMatchId] = useState(0);
+  const [blue_win, setBlueWin] = useState(0);
+  const [champions, setChampions] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+  // 매치와 이전 매치 사이의 종속성이 어떻게 되는거지...?
+
   let location = useLocation();
   const authKey = location.state.authKey;
 };
 
 const PostMatchData = async ({ match_id }) => {
   const [answer, setAnswer] = useState("");
-
   let location = useLocation();
-  const authKey = location.state.authKey;
-  const response = await fetch("http://localhost:3001/api/submit", {});
-  const data = await response.json();
-  setAnswer(data.answer);
+
+  const handleCorrection = async (e) => {
+    e.preventDefault();
+    const authKey = location.state.authKey;
+    const response = await fetch("http://localhost:3001/api/submit", {});
+    const data = await response.json();
+    setAnswer(data.answer);
+  };
 
   return { answer, setAnswer };
 };
