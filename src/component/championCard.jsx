@@ -2,21 +2,29 @@ import React from "react";
 
 const ChampionCard = ({ team, champion, position }) => {
   return (
-    <div style={{ width: 200, height: 364, position: "relative", margin: 25 }}>
+    <div
+      style={{
+        width: "13%",
+        height: "100%",
+        position: "relative",
+        margin: "0px 15px 0px 15px",
+      }}
+    >
       <img
         style={{
-          width: 200,
-          height: 364,
+          width: "100%",
+          height: "100%",
           left: 0,
           top: 0,
           position: "absolute",
+          borderRadius: 15,
         }}
         src="https://via.placeholder.com/200x364"
         alt="champion"
       />
       <div
         style={{
-          width: 200,
+          width: "100%",
           height: 67,
           left: 0,
           top: 280,
@@ -25,7 +33,7 @@ const ChampionCard = ({ team, champion, position }) => {
       >
         <div
           style={{
-            width: 200,
+            width: "100%",
             height: 66,
             left: 0,
             top: 0,
@@ -35,7 +43,7 @@ const ChampionCard = ({ team, champion, position }) => {
         />
         <div
           style={{
-            width: 71,
+            width: "100%",
             height: 67,
             left: 15,
             top: 0,
@@ -47,14 +55,18 @@ const ChampionCard = ({ team, champion, position }) => {
               left: 0,
               top: 19,
               position: "absolute",
-              color: "#001D82",
+              color: team === "Blue" ? "#001D82" : "#A13F3F",
+              width: "100%",
+              textAlign: "left",
               fontSize: 40,
               fontFamily: "Pretendard",
               fontWeight: "700",
-              wordWrap: "break-word",
+              whiteSpace: "nowrap",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
             }}
           >
-            {position}
+            {champion}
           </div>
           <div
             style={{
@@ -68,7 +80,7 @@ const ChampionCard = ({ team, champion, position }) => {
               wordWrap: "break-word",
             }}
           >
-            {team}
+            {position}
           </div>
         </div>
       </div>

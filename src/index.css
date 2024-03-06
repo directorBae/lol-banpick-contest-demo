@@ -1,13 +1,97 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+@font-face {
+  font-family: "Pretendard";
+  src: url("../public/fonts/Pretendard-Thin.woff") format("woff2"),
+    url("../public/fonts/Pretendard-Thin.woff") format("woff");
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Pretendard";
+  src: url("../public/fonts/Pretendard-ExtraLight.woff2") format("woff2"),
+    url("../public/fonts/Pretendard-ExtraLight.woff") format("woff");
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Pretendard";
+  src: url("../public/fonts/Pretendard-Light.woff2") format("woff2"),
+    url("../public/fonts/Pretendard-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Pretendard";
+  src: url("../public/fonts/Pretendard-Regular.woff2") format("woff2"),
+    url("../public/fonts/Pretendard-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Pretendard";
+  src: url("../public/fonts/Pretendard-Medium.woff2") format("woff2"),
+    url("../public/fonts/Pretendard-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Pretendard";
+  src: url("../public/fonts/Pretendard-SemiBold.woff2") format("woff2"),
+    url("../public/fonts/Pretendard-SemiBold.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Pretendard";
+  src: url("../public/fonts/Pretendard-Bold.woff2") format("woff2"),
+    url("../public/fonts/Pretendard-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Pretendard";
+  src: url("../public/fonts/Pretendard-ExtraBold.woff2") format("woff2"),
+    url("../public/fonts/Pretendard-ExtraBold.woff") format("woff");
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Pretendard";
+  src: url("../public/fonts/Pretendard-Black.woff2") format("woff2"),
+    url("../public/fonts/Pretendard-Black.woff") format("woff");
+  font-weight: 900;
+  font-style: normal;
+}
+
+body {
+  font-family: "Pretendard", sans-serif;
+}
+
+.App {
+  background-image: url("../public/images/lol_background.png"); /* 이미지 경로를 정확히 설정하세요 */
+  height: 100vh; /* 전체 화면 높이 */
+  background-position: center; /* 배경 이미지 위치 */
+  background-repeat: no-repeat; /* 이미지 반복 방지 */
+  background-size: cover; /* 배경 이미지가 컨테이너를 꽉 채우도록 설정 */
 }
