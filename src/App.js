@@ -1,22 +1,17 @@
 import MatchView from "./pages/match/MatchView";
 import LoginView from "./pages/login/LoginView";
 import "./App.css";
-import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
-      <div
-        style={{
-          position: "absolute",
-          width: "100vw",
-          height: "100vh",
-          background: "rgba(217, 217, 217, 0.01)",
-          backdropFilter: "blur(15px)",
-        }}
-      />
-      <LoginView />
-      {/* <MatchView /> */}
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<LoginView />} />
+          <Route path="/match" element={<MatchView />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }

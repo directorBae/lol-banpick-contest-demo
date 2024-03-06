@@ -1,16 +1,93 @@
 import React from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+const DescriptionWindow = ({ submitStatus, navigator }) => {
+  return (
+    <div
+      style={{
+        visibility: submitStatus ? "visible" : "hidden",
+        position: "absolute",
+        width: "100%",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <div
+        style={{
+          width: "100%",
+          color: "rgba(37.19, 37.19, 37.19, 0.80)",
+          fontSize: 32,
+          fontFamily: "Pretendard",
+          fontWeight: "600",
+          wordWrap: "break-word",
+        }}
+      >
+        게임 방법
+      </div>
+      <div
+        style={{
+          width: "100%",
+          color: "#252525",
+          fontSize: 32,
+          fontFamily: "Pretendard",
+          fontWeight: "300",
+          wordWrap: "break-word",
+          whiteSpace: "pre-wrap",
+          marginTop: 50,
+          marginBottom: 50,
+        }}
+      >
+        {
+          "여러분은 롤 게임의 챔프 픽을 보게 됩니다.\n\n이때 챔프를 클릭하면 해당 게이머의 이전 10게임의 전적을 볼 수 있습니다.\n\n여러분은 해당 정보를 보고 해당 게임에서 블루 팀이 이겼을지, 레드 팀이 이겼을지를 예측하면 됩니다. \n\n한 라운드에 대해 예측률이 50%를 넘지 못할 경우 다음 라운드에 진출할 수 없습니다."
+        }
+      </div>
+      <div style={{ width: 529, height: 99, position: "relative" }}>
+        <div
+          style={{
+            width: 529,
+            height: 99,
+            background:
+              "linear-gradient(155deg, rgba(0, 25.50, 255, 0.15) 0%, rgba(255, 0, 0, 0.15) 100%)",
+            borderRadius: 8,
+            border: "1px black solid",
+            textAlign: "center",
+            color: "white",
+            fontSize: 32,
+            fontFamily: "Pretendard",
+            fontWeight: "700",
+            wordWrap: "break-word",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+          onClick={() => navigator("match")}
+        >
+          예측 시작하기
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const SubmitForm = () => {
   const [username, setUsername] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [lolNickname, setLolNickname] = useState("");
   const [studentId, setStudentId] = useState("");
+  const [response, setResponse] = useState("");
 
   const handleSubmit = (e) => {
+    if (username === "" || phoneNumber === "" || studentId === "") {
+      return;
+    }
     e.preventDefault();
     // fetch("http://localhost:3001/api/submit", {...})
+    // setResponse(response);
     console.log(username, phoneNumber, lolNickname, studentId);
+    setResponse(true);
   };
 
   return {
@@ -22,11 +99,14 @@ const SubmitForm = () => {
     setLolNickname,
     studentId,
     setStudentId,
+    response,
+    setResponse,
     handleSubmit,
   };
 };
 
 const LoginView = () => {
+  const navigate = useNavigate();
   let {
     username,
     setUsername,
@@ -36,6 +116,8 @@ const LoginView = () => {
     setLolNickname,
     studentId,
     setStudentId,
+    response,
+    setResponse,
     handleSubmit,
   } = SubmitForm();
 
@@ -52,14 +134,18 @@ const LoginView = () => {
         display: "flex",
         justifyContent: "center",
         flexDirection: "column",
+
+        position: "absolute",
       }}
     >
+      <DescriptionWindow submitStatus={response} navigator={navigate} />
       <form
         style={{
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
+          visibility: response ? "hidden" : "visible",
         }}
         onSubmit={handleSubmit}
       >
@@ -76,7 +162,6 @@ const LoginView = () => {
           이름을 입력해주세요
         </div>
         <input
-          required={true}
           type="text"
           id="username"
           name="username"
@@ -89,6 +174,35 @@ const LoginView = () => {
             marginBottom: 40,
           }}
           onChange={(e) => setUsername(e.target.value)}
+          required
+        />
+        <div
+          style={{
+            width: "30%",
+            fontWeight: 600,
+            fontSize: 32,
+            textAlign: "left",
+            marginBottom: 40,
+            color: "rgba(24, 24, 24, 0.8)",
+          }}
+        >
+          학번을 입력해주세요
+        </div>
+        <input
+          type="text"
+          maxLength={8}
+          id="username"
+          name="username"
+          placeholder="20240000"
+          style={{
+            fontWeight: 100,
+            width: "30%",
+            height: 60,
+            fontSize: 24,
+            marginBottom: 40,
+          }}
+          onChange={(e) => setStudentId(e.target.value)}
+          required
         />
         <div
           style={{
@@ -103,8 +217,8 @@ const LoginView = () => {
           전화번호를 입력해주세요
         </div>
         <input
-          required={true}
           type="text"
+          maxLength={11}
           id="username"
           name="username"
           placeholder="010-0000-0000"
@@ -116,6 +230,7 @@ const LoginView = () => {
             marginBottom: 40,
           }}
           onChange={(e) => setPhoneNumber(e.target.value)}
+          required
         />
         <div
           style={{
@@ -143,46 +258,20 @@ const LoginView = () => {
           }}
           onChange={(e) => setLolNickname(e.target.value)}
         />
-        <div
-          style={{
-            width: "30%",
-            fontWeight: 600,
-            fontSize: 32,
-            textAlign: "left",
-            marginBottom: 40,
-            color: "rgba(24, 24, 24, 0.8)",
-          }}
-        >
-          학번을 입력해주세요
-        </div>
-        <input
-          required={true}
-          type="text"
-          id="username"
-          name="username"
-          placeholder="20240000"
-          style={{
-            fontWeight: 100,
-            width: "30%",
-            height: 60,
-            fontSize: 24,
-            marginBottom: 40,
-          }}
-          onChange={(e) => setStudentId(e.target.value)}
-        />
         <button
           style={{
             width: "30%",
-            height: 60,
-            background: "rgba(255, 255, 255, 0.1)",
+            height: 80,
             boxShadow: "0px 0px 8px 4px rgba(0, 0, 0, 0.15) inset",
             color: "white",
             fontSize: 24,
-            fontWeight: 200,
+            fontWeight: 700,
+            background:
+              "linear-gradient(155deg, rgba(0, 25.50, 255, 0.15) 0%, rgba(255, 0, 0, 0.15) 100%)",
             borderRadius: 8,
-            border: "none",
+            border: "1px black solid",
             cursor: "pointer",
-            marginTop: 80,
+            marginTop: 40,
           }}
           onClick={handleSubmit}
         >

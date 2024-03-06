@@ -347,7 +347,181 @@ const RoundMatchCountBar = ({ roundNum, matchNum }) => {
   );
 };
 
-const BeforeMatchView = ({ index }) => {};
+const BeforeMatch = ({ champion }) => {
+  return (
+    <div style={{ width: 1122, height: 100, position: "relative" }}>
+      <div
+        style={{
+          width: 1122,
+          height: 100,
+          left: 0,
+          top: 0,
+          position: "absolute",
+          borderRadius: 8,
+          border: "1px black solid",
+        }}
+      />
+      <div
+        style={{
+          width: 1087,
+          height: 75,
+          left: 16,
+          top: 13,
+          position: "absolute",
+        }}
+      >
+        <div
+          style={{
+            width: 75,
+            height: 75,
+            left: 0,
+            top: 0,
+            position: "absolute",
+            background: "#D9D9D9",
+            boxShadow: "0px 0px 8px 2px rgba(255, 244.80, 0, 0.50) inset",
+          }}
+        />
+        <div
+          style={{
+            width: 75,
+            height: 75,
+            left: 92,
+            top: 0,
+            position: "absolute",
+            background: "#D9D9D9",
+          }}
+        />
+        <div
+          style={{
+            width: 75,
+            height: 75,
+            left: 184,
+            top: 0,
+            position: "absolute",
+            background: "#D9D9D9",
+          }}
+        />
+        <div
+          style={{
+            width: 75,
+            height: 75,
+            left: 276,
+            top: 0,
+            position: "absolute",
+            background: "#D9D9D9",
+          }}
+        />
+        <div
+          style={{
+            width: 75,
+            height: 75,
+            left: 368,
+            top: 0,
+            position: "absolute",
+            background: "#D9D9D9",
+          }}
+        />
+        <div
+          style={{
+            width: 75,
+            height: 75,
+            left: 644,
+            top: 0,
+            position: "absolute",
+            background: "#D9D9D9",
+          }}
+        />
+        <div
+          style={{
+            width: 75,
+            height: 75,
+            left: 736,
+            top: 0,
+            position: "absolute",
+            background: "#D9D9D9",
+          }}
+        />
+        <div
+          style={{
+            width: 75,
+            height: 75,
+            left: 828,
+            top: 0,
+            position: "absolute",
+            background: "#D9D9D9",
+          }}
+        />
+        <div
+          style={{
+            width: 75,
+            height: 75,
+            left: 920,
+            top: 0,
+            position: "absolute",
+            background: "#D9D9D9",
+          }}
+        />
+        <div
+          style={{
+            width: 75,
+            height: 75,
+            left: 1012,
+            top: 0,
+            position: "absolute",
+            background: "#D9D9D9",
+          }}
+        />
+      </div>
+    </div>
+  );
+};
+
+const BeforeMatchView = ({ data, index }) => {
+  <div
+    style={{
+      width: 1200,
+      height: 897,
+      background: "rgba(255, 255, 255, 0.90)",
+      borderRadius: 8,
+      border: "3px black solid",
+      backdropFilter: "blur(40px)",
+    }}
+  >
+    <div
+      style={{
+        color: "rgba(132.81, 132.81, 132.81, 0.80)",
+        fontSize: 32,
+        fontFamily: "Pretendard",
+        fontWeight: "700",
+        wordWrap: "break-word",
+      }}
+    >
+      Current Pick:
+    </div>
+    <div style={{ width: 305, height: 48 }}>
+      <span style="color: 'black', fontSize: 48, fontFamily: 'Pretendard', fontWeight: '700', wordWrap: 'break-word'">
+        Top
+      </span>
+      <span style="color: 'black', fontSize: 48, fontFamily: 'Pretendard', fontWeight: '300', wordWrap: 'break-word'">
+        {" "}
+        Garen
+      </span>
+    </div>
+    <div
+      style={{
+        width: 163,
+        height: 24,
+        color: "#A13F3F",
+        fontSize: 20,
+        fontFamily: "Pretendard",
+        fontWeight: "600",
+        wordWrap: "break-word",
+      }}
+    >
+      Team Red
+    </div>
+  </div>;
+};
 
 const TenChampionTemplate = () => {
   return (
@@ -406,6 +580,15 @@ const TenChampionTemplate = () => {
 const MatchView = () => {
   return (
     <div style={{ position: "absolute" }}>
+      <div
+        style={{
+          position: "absolute",
+          width: "100vw",
+          height: "100vh",
+          background: "rgba(217, 217, 217, 0.01)",
+          backdropFilter: "blur(15px)",
+        }}
+      />
       <RoundMatchCountBar roundNum={3} matchNum={5} />
       <TenChampionTemplate />
       {/* <RoundUpMessage data={undefined} roundNum={10} /> */}
