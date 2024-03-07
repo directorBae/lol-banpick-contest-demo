@@ -85,10 +85,21 @@ const SubmitForm = () => {
       return;
     }
     e.preventDefault();
-    console.log(username, phoneNumber, lolNickname, studentId);
-    const response = await fetch("http://localhost:3001/api/submit", {});
+    const response = await fetch("http://10.20.23.199/api/user/auth", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: username,
+        phone_number: phoneNumber,
+        riot_id: lolNickname,
+        student_id: studentId,
+      }),
+    });
     setResponseStatus(response.status);
-    setAuthKey(response.auth_key);
+    const responseJson = await response.json();
+    setAuthKey(responseJson.key);
   };
 
   return {
@@ -154,7 +165,7 @@ const LoginView = () => {
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          visibility: responseStatus ? "hidden" : "visible",
+          visibility: responseStatus === 200 ? "hidden" : "visible",
         }}
         onSubmit={handleSubmit}
       >
@@ -230,7 +241,7 @@ const LoginView = () => {
           maxLength={11}
           id="username"
           name="username"
-          placeholder="010-0000-0000"
+          placeholder="01000000000"
           style={{
             fontWeight: 100,
             width: "30%",

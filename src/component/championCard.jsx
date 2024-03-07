@@ -1,14 +1,15 @@
 import React from "react";
 
-const ChampionCard = ({ team, champion, position }) => {
+const ChampionCard = ({ team, champion, position, F }) => {
   return (
     <div
       style={{
-        width: "13%",
+        width: 200,
         height: "100%",
         position: "relative",
         margin: "0px 15px 0px 15px",
       }}
+      onClick={F}
     >
       <img
         style={{
@@ -19,7 +20,7 @@ const ChampionCard = ({ team, champion, position }) => {
           position: "absolute",
           borderRadius: 15,
         }}
-        src="https://via.placeholder.com/200x364"
+        src={`images/${champion}.jpg`}
         alt="champion"
       />
       <div
@@ -27,7 +28,7 @@ const ChampionCard = ({ team, champion, position }) => {
           width: "100%",
           height: 67,
           left: 0,
-          top: 280,
+          top: "70%",
           position: "absolute",
         }}
       >
@@ -48,17 +49,18 @@ const ChampionCard = ({ team, champion, position }) => {
             left: 15,
             top: 0,
             position: "absolute",
+            
           }}
         >
           <div
             style={{
               left: 0,
-              top: 19,
+              top: 25,
               position: "absolute",
               color: team === "Blue" ? "#001D82" : "#A13F3F",
               width: "100%",
               textAlign: "left",
-              fontSize: 40,
+              fontSize: 32,
               fontFamily: "Pretendard",
               fontWeight: "700",
               whiteSpace: "nowrap",
@@ -71,7 +73,7 @@ const ChampionCard = ({ team, champion, position }) => {
           <div
             style={{
               left: 2,
-              top: 0,
+              top: 6,
               position: "absolute",
               color: "black",
               fontSize: 20,
