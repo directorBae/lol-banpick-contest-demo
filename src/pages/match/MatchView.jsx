@@ -242,7 +242,7 @@ const useMatchData = ({authKey, isReload, setIsReload, setGetStatus}) => {
 
   useEffect(() => {
     const fetchData = async () => {
-        axios.post("http://10.20.23.199/api/match/get", { auth_key: authKey }).then(response => {
+        axios.post("/api/match/get", { auth_key: authKey }).then(response => {
           setMatchData(
             response.data
           );
@@ -494,7 +494,7 @@ const ScoreBoard = ({ authKey, setIsReload }) => {
 
   const handleSubmitData = async ({event, authKey, winNumber}) => {
     try {
-      const response = await axios.post("http://10.20.23.199/api/match/submit", { auth_key: authKey, answer: winNumber });
+      const response = await axios.post("/api/match/submit", { auth_key: authKey, answer: winNumber });
       console.log(response.data);
       setScore(response.data.total_score);
       setRoundNum(response.data.round_b);
