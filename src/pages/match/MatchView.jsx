@@ -7,7 +7,7 @@ function BeforeMatchCard({history, index}){
   if (history[index] === undefined){
     return;
   }
-  const winTeam = history[index].win === history[index].my_team ? 1:0;
+  const winTeam = history[index].win_team;
   return (
     <div style={{ width: "100%", height: 100}}>
       <div
@@ -40,7 +40,8 @@ function BeforeMatchCard({history, index}){
             top: 0,
             marginLeft: 5,
             marginRight: 5,
-            boxShadow: history[index].my_team === 0 && history[index].my_role === 0 ? "0px 0px 25px 10px rgba(0, 0, 0, 1) " : "none",
+            boxShadow: history[index].my_team === 0 && history[index].my_role === 0 ? "0px 0px 10px 10px rgba(255, 255, 0, 1) " : "none",
+            border: "2px black solid",
           }}
         />
         <img
@@ -54,7 +55,8 @@ function BeforeMatchCard({history, index}){
             marginLeft: 5,
             marginRight: 5,
 
-            boxShadow: history[index].my_team === 0 && history[index].my_role === 1 ? "0px 0px 25px 10px rgba(0, 0, 0, 1) " : "none",
+            boxShadow: history[index].my_team === 0 && history[index].my_role === 1 ? "0px 0px 10px 10px rgba(255, 255, 0, 1) " : "none",
+            border: "2px black solid",
           }}
         />
         <img
@@ -67,7 +69,8 @@ function BeforeMatchCard({history, index}){
             top: 0,
             marginLeft: 5,
             marginRight: 5,
-            boxShadow: history[index].my_team === 0 && history[index].my_role === 2 ? "0px 0px 25px 10px rgba(0, 0, 0, 1) " : "none",
+            boxShadow: history[index].my_team === 0 && history[index].my_role === 2 ? "0px 0px 10px 10px rgba(255, 255, 0, 1) " : "none",
+            border: "2px black solid",
           }}
         />
         <img
@@ -81,7 +84,8 @@ function BeforeMatchCard({history, index}){
             
             marginLeft: 5,
             marginRight: 5,
-            boxShadow: history[index].my_team === 0 && history[index].my_role === 3 ? "0px 0px 25px 10px rgba(0, 0, 0, 1) " : "none",
+            boxShadow: history[index].my_team === 0 && history[index].my_role === 3 ? "0px 0px 10px 10px rgba(255, 255, 0, 1) " : "none",
+            border: "2px black solid",
           }}
         />
         <img
@@ -95,7 +99,8 @@ function BeforeMatchCard({history, index}){
             
             marginLeft: 5,
             marginRight: 5,
-            boxShadow: history[index].my_team === 0 && history[index].my_role === 4 ? "0px 0px 25px 10px rgba(0, 0, 0, 1) " : "none",
+            boxShadow: history[index].my_team === 0 && history[index].my_role === 4 ? "0px 0px 10px 10px rgba(255, 255, 0, 1) " : "none",
+            border: "2px black solid",
           }}
         />
         <span style={{width: "10%", display: "inline-block"}}>
@@ -114,7 +119,8 @@ function BeforeMatchCard({history, index}){
             
             marginLeft: 5,
             marginRight: 5,
-            boxShadow: history[index].my_team === 1 && history[index].my_role === 0 ? "0px 0px 25px 10px rgba(0, 0, 0, 1) " : "none",
+            boxShadow: history[index].my_team === 1 && history[index].my_role === 0 ? "0px 0px 10px 10px rgba(255, 255, 0, 1) " : "none",
+            border: "2px black solid",
           }}
         />
         <img
@@ -128,7 +134,8 @@ function BeforeMatchCard({history, index}){
             
             marginLeft: 5,
             marginRight: 5,
-            boxShadow: history[index].my_team === 1 && history[index].my_role === 1 ? "0px 0px 25px 10px rgba(0, 0, 0, 1) " : "none",
+            boxShadow: history[index].my_team === 1 && history[index].my_role === 1 ? "0px 0px 10px 10px rgba(255, 255, 0, 1) " : "none",
+            border: "2px black solid",
           }}
         />
         <img
@@ -142,7 +149,8 @@ function BeforeMatchCard({history, index}){
             
             marginLeft: 5,
             marginRight: 5,
-            boxShadow: history[index].my_team === 1 && history[index].my_role === 2 ? "0px 0px 25px 10px rgba(0, 0, 0, 1) " : "none",
+            boxShadow: history[index].my_team === 1 && history[index].my_role === 2 ? "0px 0px 10px 10px rgba(255, 255, 0, 1) " : "none",
+            border: "2px black solid",
           }}
         />
         <img
@@ -156,7 +164,8 @@ function BeforeMatchCard({history, index}){
             
             marginLeft: 5,
             marginRight: 5,
-            boxShadow: history[index].my_team === 1 && history[index].my_role === 3 ? "0px 0px 25px 10px rgba(0, 0, 0, 1) " : "none",
+            boxShadow: history[index].my_team === 1 && history[index].my_role === 3 ? "0px 0px 10px 10px rgba(255, 255, 0, 1) " : "none",
+            border: "2px black solid",
           }}
         />
         <img
@@ -170,7 +179,8 @@ function BeforeMatchCard({history, index}){
             
             marginLeft: 5,
             marginRight: 5,
-            boxShadow: history[index].my_team === 1 && history[index].my_role === 4 ? "0px 0px 25px 10px rgba(0, 0, 0, 1) " : "none",
+            boxShadow: history[index].my_team === 1 && history[index].my_role === 4 ? "0px 0px 10px 10px rgba(255, 255, 0, 1) " : "none",
+            border: "2px black solid",
           }}
         />
       </div>
@@ -203,23 +213,31 @@ function useParseChampionData(data) {
   const [championNames, setChampionNames] = useState({
     match: 0,
     round: 0,
-    blueTeam: {},
-    redTeam: {}
+    blueTeam: {names: {top: 0, jungle:0, mid:0, adc:0, support:0}, mosts: {top: 0, jungle:0, mid:0, adc:0, support:0}, winRates: {top: 0, jungle:0, mid:0, adc:0, support:0}},
+    redTeam: {names: {top: 0, jungle:0, mid:0, adc:0, support:0}, mosts: {top: 0, jungle:0, mid:0, adc:0, support:0}, winRates: {top: 0, jungle:0, mid:0, adc:0, support:0}},
+    isChangeRound: false,
   });
 
   useEffect(() => {
     const parseChampionNames = (teamData) => {
       const positions = ['adc', 'jungle', 'mid', 'support', 'top'];
       const names = {};
+      const mosts = {};
+      const winRates = {};
 
       positions.forEach((position) => {
         const championName = teamData[position]?.champ?.display_name;
+        const mostChampion = teamData[position]?.most_pick?.display_name;
+        const rate = teamData[position]?.win_rate;
         if (championName) {
           names[position] = championName;
+          mosts[position] = mostChampion;
+          winRates[position] = rate;
         }
       });
-
-      return names;
+      const total = {names: names, mosts: mosts, winRates: winRates};
+      console.log("total", total);
+      return total;
     };
 
     if (data) {
@@ -227,7 +245,8 @@ function useParseChampionData(data) {
         round: data.round_a,
         match: data.round_b,
         blueTeam: parseChampionNames(data.match.blue_team),
-        redTeam: parseChampionNames(data.match.red_team)
+        redTeam: parseChampionNames(data.match.red_team),
+        isChangeRound: data.is_change_round,
       });
     }
   }, [data]);
@@ -242,12 +261,12 @@ const useMatchData = ({authKey, isReload, setIsReload, setGetStatus}) => {
 
   useEffect(() => {
     const fetchData = async () => {
-        axios.post("/api/match/get", { auth_key: authKey }).then(response => {
+        axios.post("http://10.20.23.72/api/match/get", { auth_key: authKey }).then(response => {
           setMatchData(
             response.data
           );
           setGetStatus(response.status);
-          console.log(response.data);
+          console.log("RAW:" , response.data);
         }).catch (error => {
           if (error.response) {
             console.log('Error status:', error.response.status);
@@ -268,9 +287,16 @@ const useMatchData = ({authKey, isReload, setIsReload, setGetStatus}) => {
   return matchData;
 };
 
-const RoundUpMessage = ({ data, roundNum, matchNum, vis, setVis }) => { 
+const RoundUpMessage = ({ data, isChangeRound, vis, setVis }) => { 
+  useEffect (() => {
+    if (isChangeRound){
+      setVis(true);
+    }
+    else{
+      setVis(false);}
+  }, [isChangeRound, setVis]);
 
-  if (data === 200 && roundNum !== 10 && matchNum === 1 && roundNum > 1) { 
+  if (data === 200) { 
     return (
       <div
         style={{
@@ -494,10 +520,10 @@ const ScoreBoard = ({ authKey, setIsReload }) => {
 
   const handleSubmitData = async ({event, authKey, winNumber}) => {
     try {
-      const response = await axios.post("/api/match/submit", { auth_key: authKey, answer: winNumber });
+      const response = await axios.post("http://10.20.23.72/api/match/submit", { auth_key: authKey, answer: winNumber });
       console.log(response.data);
       setScore(response.data.total_score);
-      setRoundNum(response.data.round_b);
+      setRoundNum(response.data.total_round);
 
       setIsReload(true);
     } catch (error) {
@@ -541,7 +567,7 @@ const ScoreBoard = ({ authKey, setIsReload }) => {
             justifyContent: "center",
             alignItems: "center",
           }}
-          onClick={ (e) => handleSubmitData({event: e, authKey: authKey, winNumber: 0})}
+          onClick={ (e) => handleSubmitData({event: e, authKey: authKey, winNumber: 1})}
         >
           <div
             style={{
@@ -582,7 +608,7 @@ const ScoreBoard = ({ authKey, setIsReload }) => {
             justifyContent: "center",
             alignItems: "center",
           }}
-          onClick={(e) => handleSubmitData({event: e, authKey: authKey, winNumber: 1})}
+          onClick={(e) => handleSubmitData({event: e, authKey: authKey, winNumber: 0})}
         >
           <div
             style={{
@@ -674,7 +700,7 @@ const BeforeMatchView = ({ index, data, isVisible, setIsVisible }) => {
     default:
       break;
   }
-  const champion = index / 5 < 1 ? parsedData.redTeam[position.toLowerCase()] : parsedData.blueTeam[position.toLowerCase()];
+  const champion = index / 5 < 1 ? parsedData.redTeam.names[position.toLowerCase()] : parsedData.blueTeam.names[position.toLowerCase()];
   const historyData = useBeforeMatch({data: data, team: team.toLowerCase(), position: position.toLowerCase()});
 
 
@@ -694,6 +720,7 @@ const BeforeMatchView = ({ index, data, isVisible, setIsVisible }) => {
       flexDirection: "column",
       justifyContent: "flex-start",
       visibility: isVisible[index] ? "visible" : "hidden",
+      zIndex: 2
     }}
   onClick={() => handleHistoryInVisible()}
   >
@@ -753,6 +780,8 @@ const BeforeMatchView = ({ index, data, isVisible, setIsVisible }) => {
 };
 
 const TenChampionTemplate = ({blueTeamData, redTeamData, authKey, setIsReload, handleHistoryVisible}) => {
+  console.log("blueTeamData", blueTeamData);
+  console.log("redTeamData", redTeamData);
   return (
     <div style={{ position: "relative", width: "100vw", height: "85vh" }}>
       <div
@@ -766,11 +795,11 @@ const TenChampionTemplate = ({blueTeamData, redTeamData, authKey, setIsReload, h
           minWidth: 800,
         }}
       >
-        <ChampionCard team="Red" champion={redTeamData.top} position={"Top"} F={() => handleHistoryVisible(0)}/>
-        <ChampionCard team="Red" champion={redTeamData.jungle} position={"Jungle"} F={() => handleHistoryVisible(1)}/>
-        <ChampionCard team="Red" champion={redTeamData.mid} position={"Mid"} F={() => handleHistoryVisible(2)}/>
-        <ChampionCard team="Red" champion={redTeamData.adc} position={"Adc"} F={() => handleHistoryVisible(3)}/>
-        <ChampionCard team="Red" champion={redTeamData.support} position={"Support"} F={() => handleHistoryVisible(4)}/>
+        <ChampionCard team="Red" champion={redTeamData.names.top} position={"Team Red Top"} F={() => handleHistoryVisible(0)} mostChampion={redTeamData.mosts.top} winRate={redTeamData.winRates.top}/>
+        <ChampionCard team="Red" champion={redTeamData.names.jungle} position={"Team Red Jungle"} F={() => handleHistoryVisible(1)} mostChampion={redTeamData.mosts.jungle} winRate={redTeamData.winRates.jungle}/>
+        <ChampionCard team="Red" champion={redTeamData.names.mid} position={"Team Red Mid"} F={() => handleHistoryVisible(2)} mostChampion={redTeamData.mosts.mid} winRate={redTeamData.winRates.mid}/>
+        <ChampionCard team="Red" champion={redTeamData.names.adc} position={"Team Red Adc"} F={() => handleHistoryVisible(3)} mostChampion={redTeamData.mosts.adc} winRate={redTeamData.winRates.adc}/>
+        <ChampionCard team="Red" champion={redTeamData.names.support} position={"Team Red Support"} F={() => handleHistoryVisible(4)} mostChampion={redTeamData.mosts.support} winRate={redTeamData.winRates.support}/>
       </div>
       <div
         style={{
@@ -796,11 +825,11 @@ const TenChampionTemplate = ({blueTeamData, redTeamData, authKey, setIsReload, h
           minWidth: 800,
         }}
       >
-        <ChampionCard team="Blue" champion={blueTeamData.top} position={"Top"} F={() => handleHistoryVisible(5)}/>
-        <ChampionCard team="Blue" champion={blueTeamData.jungle} position={"Jungle"} F={() => handleHistoryVisible(6)}/>
-        <ChampionCard team="Blue" champion={blueTeamData.mid} position={"Mid"} F={() => handleHistoryVisible(7)}/>
-        <ChampionCard team="Blue" champion={blueTeamData.adc} position={"Adc"} F={() => handleHistoryVisible(8)}/>
-        <ChampionCard team="Blue" champion={blueTeamData.support} position={"Support"} F={() => handleHistoryVisible(9)}/>
+        <ChampionCard team="Blue" champion={blueTeamData.names.top} position={"Team Blue Top"} F={() => handleHistoryVisible(5)} mostChampion={blueTeamData.mosts.top} winRate={blueTeamData.winRates.top}/>
+        <ChampionCard team="Blue" champion={blueTeamData.names.jungle} position={"Team Blue Jungle"} F={() => handleHistoryVisible(6)} mostChampion={blueTeamData.mosts.jungle} winRate={blueTeamData.winRates.jungle}/>
+        <ChampionCard team="Blue" champion={blueTeamData.names.mid} position={"Team Blue Mid"} F={() => handleHistoryVisible(7)} mostChampion={blueTeamData.mosts.mid} winRate={blueTeamData.winRates.mid}/>
+        <ChampionCard team="Blue" champion={blueTeamData.names.adc} position={"Team Blue Adc"} F={() => handleHistoryVisible(8)} mostChampion={blueTeamData.mosts.adc} winRate={blueTeamData.winRates.adc}/>
+        <ChampionCard team="Blue" champion={blueTeamData.names.support} position={"Team Blue Support"} F={() => handleHistoryVisible(9)} mostChampion={blueTeamData.mosts.support} winRate={blueTeamData.winRates.support}/>
       </div>
     </div>
   );
@@ -826,6 +855,7 @@ const MatchView = () => {
   const rawData = useMatchData({authKey: auth, isReload: isReload, setIsReload: setIsReload, setGetStatus: setGetStatus});
 
   const parsedData = useParseChampionData(rawData);
+  console.log(parsedData);
   
     return (
     <div style={{ position: "absolute" }}>
@@ -841,7 +871,7 @@ const MatchView = () => {
       <RoundMatchCountBar roundNum={parsedData.round} matchNum={parsedData.match} />
       <TenChampionTemplate blueTeamData={parsedData.blueTeam} redTeamData={parsedData.redTeam} authKey={auth} isReload={isReload} setIsReload={setIsReload} handleHistoryVisible={handleHistoryVisible}/>
       <BeforeMatchView data={rawData} champion={"Garen"} index={historyIndex} isVisible={historyVisible} setIsVisible={setHistoryVisible} />
-      <RoundUpMessage data={getStatus} roundNum={parsedData.round} matchNum={parsedData.match} vis={messageVis} setVis={setMessageVis}/>
+      <RoundUpMessage data={getStatus} isChangeRound={parsedData.isChangeRound} vis={messageVis} setVis={setMessageVis}/>
     </div>
   );
 };

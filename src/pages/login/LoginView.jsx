@@ -85,7 +85,7 @@ const SubmitForm = () => {
       return;
     }
     e.preventDefault();
-    const response = await fetch("/api/user/auth", {
+    const response = await fetch("http://10.20.23.72/api/user/auth", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
