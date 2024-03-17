@@ -1,6 +1,13 @@
 import React from "react";
 
-const ChampionCard = ({ team, champion, position, F, mostChampion, winRate }) => {
+const ChampionCard = ({
+  team,
+  champion,
+  position,
+  F,
+  mostChampion,
+  winRate,
+}) => {
   return (
     <div
       style={{
@@ -12,48 +19,54 @@ const ChampionCard = ({ team, champion, position, F, mostChampion, winRate }) =>
       onClick={F}
     >
       <div
+        style={{
+          width: "100%",
+          height: 40,
+          left: 0,
+          top: 160,
+          position: "absolute",
+          background: "rgba(255, 255, 255, 0.8)",
+          zIndex: 1,
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "flex-start",
+        }}
+      >
+        <div
           style={{
+            color: "Black",
             width: "100%",
-            height: 40,
-            left: 0,
-            top: 160,
-            position: "absolute",
-            background: "rgba(255, 255, 255, 0.8)",
-            zIndex: 1,
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "flex-start",
+            textAlign: "left",
+            margin: "2px 0px 0px 15px",
+            fontSize: 14,
+            marginTop: 2,
+            fontFamily: "Pretendard",
+            fontWeight: "500",
+            whiteSpace: "nowrap",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
           }}
         >
-          <div style={{
-              color: "Black",
-              width: "100%",
-              textAlign: "left",
-              margin: "2px 0px 0px 15px",
-              fontSize: 14,
-              marginTop: 2,
-              fontFamily: "Pretendard",
-              fontWeight: "500",
-              whiteSpace: "nowrap",
-              overflow: "hidden",
-              textOverflow: "ellipsis",}}>
-            {"Most Champion: " + mostChampion}
-          </div>
-          <div style={{
-              color: "Black",
-              width: "100%",
-              textAlign: "left",
-              margin: "2px 0px 0px 15px",
-              fontSize: 14,
-              marginTop: 2,
-              fontFamily: "Pretendard",
-              fontWeight: "500",
-              whiteSpace: "nowrap",
-              overflow: "hidden",
-              textOverflow: "ellipsis",}}>
-            {"Recent Win rate: " + Math.round(winRate*100) + "%"}
-          </div>
+          {"Most Champion: " + mostChampion}
         </div>
+        <div
+          style={{
+            color: "Black",
+            width: "100%",
+            textAlign: "left",
+            margin: "2px 0px 0px 15px",
+            fontSize: 14,
+            marginTop: 2,
+            fontFamily: "Pretendard",
+            fontWeight: "500",
+            whiteSpace: "nowrap",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+          }}
+        >
+          {"Recent Win rate: " + Math.round(winRate * 100) + "%"}
+        </div>
+      </div>
       <img
         style={{
           width: "100%",
@@ -92,7 +105,6 @@ const ChampionCard = ({ team, champion, position, F, mostChampion, winRate }) =>
             left: 15,
             top: 0,
             position: "absolute",
-            
           }}
         >
           <div

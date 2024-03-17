@@ -1,6 +1,84 @@
 import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import styled, { css } from "styled-components";
+
+const media = {
+  mobile: (...args) => css`
+    @media (max-width: 768px) {
+      ${css(...args)}
+    }
+  `,
+  desktop: (...args) => css`
+    @media (min-width: 769px) {
+      ${css(...args)}
+    }
+  `,
+};
+
+const InstructionContainer = styled.div`
+  font-weight: 600;
+  text-align: left;
+  color: rgba(24, 24, 24, 0.8);
+
+  ${media.mobile`
+  width: 80%;
+  font-size: 16px;
+  margin-bottom: 20px;
+  `}
+
+  ${media.desktop`
+  width: 30%;
+  font-size: 32px;
+  margin-bottom: 40px;
+  `}
+`;
+
+const InputContainer = styled.input`
+  font-weight: 100;
+
+  ${media.mobile`
+  width: 80%;
+  font-size: 12px;
+  height: 30px;
+  margin-bottom: 20px;
+  `}
+
+  ${media.desktop`
+  width: 30%;
+  font-size: 24px;
+  height: 60px;
+  margin-bottom: 40px;
+  `}
+`;
+
+const SubmitButton = styled.button`
+  boxshadow: 0px 0px 8px 4px rgba(0, 0, 0, 0.15) inset;
+  color: white;
+  fontweight: 700;
+  background: linear-gradient(
+    155deg,
+    rgba(0, 25.5, 255, 0.15) 0%,
+    rgba(255, 0, 0, 0.15) 100%
+  );
+  borderradius: 8px;
+  border: 1px black solid;
+  cursor: pointer;
+
+  ${media.mobile`
+  width: 80%;
+  font-size: 12px;
+  height: 40px;
+  margin-top: 20px;
+  `}
+
+  ${media.desktop`
+  width: 30%;
+  font-size: 24px;
+  height: 80px;
+  margin-top: 40px;
+  `}
+`;
 
 const DescriptionWindow = ({ submitStatus, navigator, authKey }) => {
   return (
@@ -85,7 +163,7 @@ const SubmitForm = () => {
       return;
     }
     e.preventDefault();
-    const response = await fetch("/api/user/auth", {
+    const response = await fetch("http://10.20.23.199/api/user/auth", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -169,134 +247,45 @@ const LoginView = () => {
         }}
         onSubmit={handleSubmit}
       >
-        <div
-          style={{
-            width: "30%",
-            fontWeight: 600,
-            fontSize: 32,
-            textAlign: "left",
-            marginBottom: 40,
-            color: "rgba(24, 24, 24, 0.8)",
-          }}
-        >
-          이름을 입력해주세요
-        </div>
-        <input
+        <InstructionContainer>이름을 입력해주세요</InstructionContainer>
+        <InputContainer
           type="text"
           id="username"
           name="username"
           placeholder="홍길동"
-          style={{
-            fontWeight: 100,
-            width: "30%",
-            height: 60,
-            fontSize: 24,
-            marginBottom: 40,
-          }}
           onChange={(e) => setUsername(e.target.value)}
           required
         />
-        <div
-          style={{
-            width: "30%",
-            fontWeight: 600,
-            fontSize: 32,
-            textAlign: "left",
-            marginBottom: 40,
-            color: "rgba(24, 24, 24, 0.8)",
-          }}
-        >
-          학번을 입력해주세요
-        </div>
-        <input
+        <InstructionContainer>학번을 입력해주세요</InstructionContainer>
+
+        <InputContainer
           type="text"
           maxLength={8}
           id="username"
           name="username"
           placeholder="20240000"
-          style={{
-            fontWeight: 100,
-            width: "30%",
-            height: 60,
-            fontSize: 24,
-            marginBottom: 40,
-          }}
           onChange={(e) => setStudentId(e.target.value)}
           required
         />
-        <div
-          style={{
-            width: "30%",
-            fontWeight: 600,
-            fontSize: 32,
-            textAlign: "left",
-            marginBottom: 40,
-            color: "rgba(24, 24, 24, 0.8)",
-          }}
-        >
-          전화번호를 입력해주세요
-        </div>
-        <input
+        <InstructionContainer>전화번호를 입력해주세요</InstructionContainer>
+        <InputContainer
           type="text"
           maxLength={11}
           id="username"
           name="username"
           placeholder="01000000000"
-          style={{
-            fontWeight: 100,
-            width: "30%",
-            height: 60,
-            fontSize: 24,
-            marginBottom: 40,
-          }}
           onChange={(e) => setPhoneNumber(e.target.value)}
           required
         />
-        <div
-          style={{
-            width: "30%",
-            fontWeight: 600,
-            fontSize: 32,
-            textAlign: "left",
-            marginBottom: 40,
-            color: "rgba(24, 24, 24, 0.8)",
-          }}
-        >
-          롤 닉네임을 입력해주세요
-        </div>
-        <input
+        <InstructionContainer>롤 닉네임을 입력해주세요</InstructionContainer>
+        <InputContainer
           type="text"
           id="username"
           name="username"
           placeholder="Hide on Bush#KR1 (반드시 태그까지 입력)"
-          style={{
-            fontWeight: 100,
-            width: "30%",
-            height: 60,
-            fontSize: 24,
-            marginBottom: 40,
-          }}
           onChange={(e) => setLolNickname(e.target.value)}
         />
-        <button
-          style={{
-            width: "30%",
-            height: 80,
-            boxShadow: "0px 0px 8px 4px rgba(0, 0, 0, 0.15) inset",
-            color: "white",
-            fontSize: 24,
-            fontWeight: 700,
-            background:
-              "linear-gradient(155deg, rgba(0, 25.50, 255, 0.15) 0%, rgba(255, 0, 0, 0.15) 100%)",
-            borderRadius: 8,
-            border: "1px black solid",
-            cursor: "pointer",
-            marginTop: 40,
-          }}
-          onClick={handleSubmit}
-        >
-          제출하기
-        </button>
+        <SubmitButton onClick={handleSubmit}>제출하기</SubmitButton>
       </form>
     </div>
   );
