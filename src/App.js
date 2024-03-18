@@ -8,8 +8,8 @@ function App() {
     <div className="App">
       <HashRouter>
         <Routes>
-          <Route path="/m" element={<LoginView />} />
-          <Route path="/" element={<MatchView />} />
+          <Route path="/" element={<LoginView />} />
+          <Route path="/match" element={<MatchView />} />
         </Routes>
       </HashRouter>
     </div>

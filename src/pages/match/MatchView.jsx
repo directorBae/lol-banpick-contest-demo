@@ -2,230 +2,452 @@ import ChampionCard from "../../component/championCard";
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
+import { isMobile } from "react-device-detect";
 
 function BeforeMatchCard({ history, index }) {
   if (history[index] === undefined) {
     return;
   }
   const winTeam = history[index].win_team;
-  return (
-    <div style={{ width: "100%", height: 100 }}>
-      <div
-        style={{
-          width: "100%",
-          height: 100,
-          borderRadius: 8,
-          border: "1px black solid",
-          background:
-            "linear-gradient(90deg, rgba(105, 129, 255, 0.5) 37%, rgba(255, 116, 116, 0.5) 65%)",
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-        }}
-      >
+  if (!isMobile) {
+    return (
+      <div style={{ width: "100%", height: 100 }}>
         <div
           style={{
             width: "100%",
-            height: 75,
-            alignSelf: "center",
+            height: 100,
+            borderRadius: 8,
+            border: "1px black solid",
+            background:
+              "linear-gradient(90deg, rgba(105, 129, 255, 0.5) 37%, rgba(255, 116, 116, 0.5) 65%)",
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
           }}
         >
-          <img
-            src={`images/${history[index].blue_team.top.display_name}_squared.jpg`}
-            alt="champion"
+          <div
             style={{
-              width: 75,
+              width: "100%",
               height: 75,
-              left: 0,
-              top: 0,
-              marginLeft: 5,
-              marginRight: 5,
-              boxShadow:
-                history[index].my_team === 0 && history[index].my_role === 0
-                  ? "0px 0px 10px 10px rgba(255, 255, 0, 1) "
-                  : "none",
-              border: "2px black solid",
+              alignSelf: "center",
             }}
-          />
-          <img
-            src={`images/${history[index].blue_team.jungle.display_name}_squared.jpg`}
-            alt="champion"
-            style={{
-              width: 75,
-              height: 75,
-              left: 92,
-              top: 0,
-              marginLeft: 5,
-              marginRight: 5,
-
-              boxShadow:
-                history[index].my_team === 0 && history[index].my_role === 1
-                  ? "0px 0px 10px 10px rgba(255, 255, 0, 1) "
-                  : "none",
-              border: "2px black solid",
-            }}
-          />
-          <img
-            src={`images/${history[index].blue_team.mid.display_name}_squared.jpg`}
-            alt="champion"
-            style={{
-              width: 75,
-              height: 75,
-              left: 184,
-              top: 0,
-              marginLeft: 5,
-              marginRight: 5,
-              boxShadow:
-                history[index].my_team === 0 && history[index].my_role === 2
-                  ? "0px 0px 10px 10px rgba(255, 255, 0, 1) "
-                  : "none",
-              border: "2px black solid",
-            }}
-          />
-          <img
-            src={`images/${history[index].blue_team.adc.display_name}_squared.jpg`}
-            alt="champion"
-            style={{
-              width: 75,
-              height: 75,
-              left: 276,
-              top: 0,
-
-              marginLeft: 5,
-              marginRight: 5,
-              boxShadow:
-                history[index].my_team === 0 && history[index].my_role === 3
-                  ? "0px 0px 10px 10px rgba(255, 255, 0, 1) "
-                  : "none",
-              border: "2px black solid",
-            }}
-          />
-          <img
-            src={`images/${history[index].blue_team.support.display_name}_squared.jpg`}
-            alt="champion"
-            style={{
-              width: 75,
-              height: 75,
-              left: 368,
-              top: 0,
-
-              marginLeft: 5,
-              marginRight: 5,
-              boxShadow:
-                history[index].my_team === 0 && history[index].my_role === 4
-                  ? "0px 0px 10px 10px rgba(255, 255, 0, 1) "
-                  : "none",
-              border: "2px black solid",
-            }}
-          />
-          <span style={{ width: "10%", display: "inline-block" }}>
-            <div
+          >
+            <img
+              src={`images/${history[index].blue_team.top.display_name}_squared.jpg`}
+              alt="champion"
               style={{
-                width: "100%",
-                height: "100%",
-                fontSize: 30,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: winTeam === 0 ? "flex-start" : "flex-end",
+                width: 75,
+                height: 75,
+                left: 0,
+                top: 0,
+                marginLeft: 5,
+                marginRight: 5,
+                boxShadow:
+                  history[index].my_team === 0 && history[index].my_role === 0
+                    ? "0px 0px 10px 10px rgba(255, 255, 0, 1) "
+                    : "none",
+                border: "2px black solid",
               }}
-            >
-              Win
-            </div>
-          </span>
-          <img
-            src={`images/${history[index].red_team.top.display_name}_squared.jpg`}
-            alt="champion"
-            style={{
-              width: 75,
-              height: 75,
-              left: 644,
-              top: 0,
+            />
+            <img
+              src={`images/${history[index].blue_team.jungle.display_name}_squared.jpg`}
+              alt="champion"
+              style={{
+                width: 75,
+                height: 75,
+                left: 92,
+                top: 0,
+                marginLeft: 5,
+                marginRight: 5,
 
-              marginLeft: 5,
-              marginRight: 5,
-              boxShadow:
-                history[index].my_team === 1 && history[index].my_role === 0
-                  ? "0px 0px 10px 10px rgba(255, 255, 0, 1) "
-                  : "none",
-              border: "2px black solid",
-            }}
-          />
-          <img
-            src={`images/${history[index].red_team.jungle.display_name}_squared.jpg`}
-            alt="champion"
-            style={{
-              width: 75,
-              height: 75,
-              left: 736,
-              top: 0,
+                boxShadow:
+                  history[index].my_team === 0 && history[index].my_role === 1
+                    ? "0px 0px 10px 10px rgba(255, 255, 0, 1) "
+                    : "none",
+                border: "2px black solid",
+              }}
+            />
+            <img
+              src={`images/${history[index].blue_team.mid.display_name}_squared.jpg`}
+              alt="champion"
+              style={{
+                width: 75,
+                height: 75,
+                left: 184,
+                top: 0,
+                marginLeft: 5,
+                marginRight: 5,
+                boxShadow:
+                  history[index].my_team === 0 && history[index].my_role === 2
+                    ? "0px 0px 10px 10px rgba(255, 255, 0, 1) "
+                    : "none",
+                border: "2px black solid",
+              }}
+            />
+            <img
+              src={`images/${history[index].blue_team.adc.display_name}_squared.jpg`}
+              alt="champion"
+              style={{
+                width: 75,
+                height: 75,
+                left: 276,
+                top: 0,
 
-              marginLeft: 5,
-              marginRight: 5,
-              boxShadow:
-                history[index].my_team === 1 && history[index].my_role === 1
-                  ? "0px 0px 10px 10px rgba(255, 255, 0, 1) "
-                  : "none",
-              border: "2px black solid",
-            }}
-          />
-          <img
-            src={`images/${history[index].red_team.mid.display_name}_squared.jpg`}
-            alt="champion"
-            style={{
-              width: 75,
-              height: 75,
-              left: 828,
-              top: 0,
+                marginLeft: 5,
+                marginRight: 5,
+                boxShadow:
+                  history[index].my_team === 0 && history[index].my_role === 3
+                    ? "0px 0px 10px 10px rgba(255, 255, 0, 1) "
+                    : "none",
+                border: "2px black solid",
+              }}
+            />
+            <img
+              src={`images/${history[index].blue_team.support.display_name}_squared.jpg`}
+              alt="champion"
+              style={{
+                width: 75,
+                height: 75,
+                left: 368,
+                top: 0,
 
-              marginLeft: 5,
-              marginRight: 5,
-              boxShadow:
-                history[index].my_team === 1 && history[index].my_role === 2
-                  ? "0px 0px 10px 10px rgba(255, 255, 0, 1) "
-                  : "none",
-              border: "2px black solid",
-            }}
-          />
-          <img
-            src={`images/${history[index].red_team.adc.display_name}_squared.jpg`}
-            alt="champion"
-            style={{
-              width: 75,
-              height: 75,
-              left: 920,
-              top: 0,
+                marginLeft: 5,
+                marginRight: 5,
+                boxShadow:
+                  history[index].my_team === 0 && history[index].my_role === 4
+                    ? "0px 0px 10px 10px rgba(255, 255, 0, 1) "
+                    : "none",
+                border: "2px black solid",
+              }}
+            />
+            <span style={{ width: "10%", display: "inline-block" }}>
+              <div
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  fontSize: 30,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: winTeam === 0 ? "flex-start" : "flex-end",
+                }}
+              >
+                Win
+              </div>
+            </span>
+            <img
+              src={`images/${history[index].red_team.top.display_name}_squared.jpg`}
+              alt="champion"
+              style={{
+                width: 75,
+                height: 75,
+                left: 644,
+                top: 0,
 
-              marginLeft: 5,
-              marginRight: 5,
-              boxShadow:
-                history[index].my_team === 1 && history[index].my_role === 3
-                  ? "0px 0px 10px 10px rgba(255, 255, 0, 1) "
-                  : "none",
-              border: "2px black solid",
-            }}
-          />
-          <img
-            src={`images/${history[index].red_team.support.display_name}_squared.jpg`}
-            alt="champion"
-            style={{
-              width: 75,
-              height: 75,
-              left: 1012,
-              top: 0,
+                marginLeft: 5,
+                marginRight: 5,
+                boxShadow:
+                  history[index].my_team === 1 && history[index].my_role === 0
+                    ? "0px 0px 10px 10px rgba(255, 255, 0, 1) "
+                    : "none",
+                border: "2px black solid",
+              }}
+            />
+            <img
+              src={`images/${history[index].red_team.jungle.display_name}_squared.jpg`}
+              alt="champion"
+              style={{
+                width: 75,
+                height: 75,
+                left: 736,
+                top: 0,
 
-              marginLeft: 5,
-              marginRight: 5,
-              boxShadow:
-                history[index].my_team === 1 && history[index].my_role === 4
-                  ? "0px 0px 10px 10px rgba(255, 255, 0, 1) "
-                  : "none",
-              border: "2px black solid",
-            }}
-          />
+                marginLeft: 5,
+                marginRight: 5,
+                boxShadow:
+                  history[index].my_team === 1 && history[index].my_role === 1
+                    ? "0px 0px 10px 10px rgba(255, 255, 0, 1) "
+                    : "none",
+                border: "2px black solid",
+              }}
+            />
+            <img
+              src={`images/${history[index].red_team.mid.display_name}_squared.jpg`}
+              alt="champion"
+              style={{
+                width: 75,
+                height: 75,
+                left: 828,
+                top: 0,
+
+                marginLeft: 5,
+                marginRight: 5,
+                boxShadow:
+                  history[index].my_team === 1 && history[index].my_role === 2
+                    ? "0px 0px 10px 10px rgba(255, 255, 0, 1) "
+                    : "none",
+                border: "2px black solid",
+              }}
+            />
+            <img
+              src={`images/${history[index].red_team.adc.display_name}_squared.jpg`}
+              alt="champion"
+              style={{
+                width: 75,
+                height: 75,
+                left: 920,
+                top: 0,
+
+                marginLeft: 5,
+                marginRight: 5,
+                boxShadow:
+                  history[index].my_team === 1 && history[index].my_role === 3
+                    ? "0px 0px 10px 10px rgba(255, 255, 0, 1) "
+                    : "none",
+                border: "2px black solid",
+              }}
+            />
+            <img
+              src={`images/${history[index].red_team.support.display_name}_squared.jpg`}
+              alt="champion"
+              style={{
+                width: 75,
+                height: 75,
+                left: 1012,
+                top: 0,
+
+                marginLeft: 5,
+                marginRight: 5,
+                boxShadow:
+                  history[index].my_team === 1 && history[index].my_role === 4
+                    ? "0px 0px 10px 10px rgba(255, 255, 0, 1) "
+                    : "none",
+                border: "2px black solid",
+              }}
+            />
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    return (
+      <div style={{ width: "100%", height: 50 }}>
+        <div
+          style={{
+            width: "100%",
+            height: 50,
+            borderRadius: 8,
+            border: "1px black solid",
+            background:
+              "linear-gradient(90deg, rgba(105, 129, 255, 0.5) 37%, rgba(255, 116, 116, 0.5) 65%)",
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+          }}
+        >
+          <div
+            style={{
+              width: "100%",
+              height: 20,
+              alignSelf: "center",
+            }}
+          >
+            <img
+              src={`images/${history[index].blue_team.top.display_name}_squared.jpg`}
+              alt="champion"
+              style={{
+                width: 20,
+                height: 20,
+                left: 0,
+                top: 0,
+                marginLeft: 1,
+                marginRight: 1,
+                boxShadow:
+                  history[index].my_team === 0 && history[index].my_role === 0
+                    ? "0px 0px 10px 10px rgba(255, 255, 0, 1) "
+                    : "none",
+                border: "2px black solid",
+              }}
+            />
+            <img
+              src={`images/${history[index].blue_team.jungle.display_name}_squared.jpg`}
+              alt="champion"
+              style={{
+                width: 20,
+                height: 20,
+                left: 92,
+                top: 0,
+                marginLeft: 1,
+                marginRight: 1,
+
+                boxShadow:
+                  history[index].my_team === 0 && history[index].my_role === 1
+                    ? "0px 0px 10px 10px rgba(255, 255, 0, 1) "
+                    : "none",
+                border: "2px black solid",
+              }}
+            />
+            <img
+              src={`images/${history[index].blue_team.mid.display_name}_squared.jpg`}
+              alt="champion"
+              style={{
+                width: 20,
+                height: 20,
+                left: 184,
+                top: 0,
+                marginLeft: 1,
+                marginRight: 1,
+                boxShadow:
+                  history[index].my_team === 0 && history[index].my_role === 2
+                    ? "0px 0px 10px 10px rgba(255, 255, 0, 1) "
+                    : "none",
+                border: "2px black solid",
+              }}
+            />
+            <img
+              src={`images/${history[index].blue_team.adc.display_name}_squared.jpg`}
+              alt="champion"
+              style={{
+                width: 20,
+                height: 20,
+                left: 276,
+                top: 0,
+
+                marginLeft: 1,
+                marginRight: 1,
+                boxShadow:
+                  history[index].my_team === 0 && history[index].my_role === 3
+                    ? "0px 0px 10px 10px rgba(255, 255, 0, 1) "
+                    : "none",
+                border: "2px black solid",
+              }}
+            />
+            <img
+              src={`images/${history[index].blue_team.support.display_name}_squared.jpg`}
+              alt="champion"
+              style={{
+                width: 20,
+                height: 20,
+                left: 368,
+                top: 0,
+
+                marginLeft: 1,
+                marginRight: 1,
+                boxShadow:
+                  history[index].my_team === 0 && history[index].my_role === 4
+                    ? "0px 0px 10px 10px rgba(255, 255, 0, 1) "
+                    : "none",
+                border: "2px black solid",
+              }}
+            />
+            <span style={{ width: "10%", display: "inline-block" }}>
+              <div
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  fontSize: 10,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: winTeam === 0 ? "flex-start" : "flex-end",
+                }}
+              >
+                Win
+              </div>
+            </span>
+            <img
+              src={`images/${history[index].red_team.top.display_name}_squared.jpg`}
+              alt="champion"
+              style={{
+                width: 20,
+                height: 20,
+                left: 644,
+                top: 0,
+
+                marginLeft: 1,
+                marginRight: 1,
+                boxShadow:
+                  history[index].my_team === 1 && history[index].my_role === 0
+                    ? "0px 0px 10px 10px rgba(255, 255, 0, 1) "
+                    : "none",
+                border: "2px black solid",
+              }}
+            />
+            <img
+              src={`images/${history[index].red_team.jungle.display_name}_squared.jpg`}
+              alt="champion"
+              style={{
+                width: 20,
+                height: 20,
+                left: 736,
+                top: 0,
+
+                marginLeft: 1,
+                marginRight: 1,
+                boxShadow:
+                  history[index].my_team === 1 && history[index].my_role === 1
+                    ? "0px 0px 10px 10px rgba(255, 255, 0, 1) "
+                    : "none",
+                border: "2px black solid",
+              }}
+            />
+            <img
+              src={`images/${history[index].red_team.mid.display_name}_squared.jpg`}
+              alt="champion"
+              style={{
+                width: 20,
+                height: 20,
+                left: 828,
+                top: 0,
+
+                marginLeft: 1,
+                marginRight: 1,
+                boxShadow:
+                  history[index].my_team === 1 && history[index].my_role === 2
+                    ? "0px 0px 10px 10px rgba(255, 255, 0, 1) "
+                    : "none",
+                border: "2px black solid",
+              }}
+            />
+            <img
+              src={`images/${history[index].red_team.adc.display_name}_squared.jpg`}
+              alt="champion"
+              style={{
+                width: 20,
+                height: 20,
+                left: 920,
+                top: 0,
+
+                marginLeft: 1,
+                marginRight: 1,
+                boxShadow:
+                  history[index].my_team === 1 && history[index].my_role === 3
+                    ? "0px 0px 10px 10px rgba(255, 255, 0, 1) "
+                    : "none",
+                border: "2px black solid",
+              }}
+            />
+            <img
+              src={`images/${history[index].red_team.support.display_name}_squared.jpg`}
+              alt="champion"
+              style={{
+                width: 20,
+                height: 20,
+                left: 1012,
+                top: 0,
+
+                marginLeft: 1,
+                marginRight: 1,
+                boxShadow:
+                  history[index].my_team === 1 && history[index].my_role === 4
+                    ? "0px 0px 10px 10px rgba(255, 255, 0, 1) "
+                    : "none",
+                border: "2px black solid",
+              }}
+            />
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
 function useBeforeMatch({ data, team, position }) {
@@ -363,7 +585,7 @@ const RoundUpMessage = ({ data, isChangeRound, vis, setVis }) => {
         <div
           style={{
             width: "70%",
-            height: "50%",
+            height: "70%",
             background: "rgba(255, 255, 255, 0.20)",
             boxShadow: "0px 0px 112.5px 44px rgba(255, 255, 255, 0.25) inset",
             borderRadius: 8,
@@ -377,7 +599,7 @@ const RoundUpMessage = ({ data, isChangeRound, vis, setVis }) => {
           <span
             style={{
               color: "rgba(0, 0, 0, 0.80)",
-              fontSize: 64,
+              fontSize: 50,
               fontFamily: "Pretendard",
               fontWeight: "600",
               wordWrap: "break-word",
@@ -389,7 +611,7 @@ const RoundUpMessage = ({ data, isChangeRound, vis, setVis }) => {
           <span
             style={{
               color: "rgba(0, 0, 0, 0.80)",
-              fontSize: 32,
+              fontSize: 24,
               fontFamily: "Pretendard",
               fontWeight: "600",
               wordWrap: "break-word",
@@ -453,7 +675,7 @@ const RoundUpMessage = ({ data, isChangeRound, vis, setVis }) => {
         <div
           style={{
             width: "80%",
-            height: "50%",
+            height: "70%",
             background: "rgba(255, 255, 255, 0.20)",
             boxShadow: "0px 0px 112.5px 44px rgba(255, 255, 255, 0.25) inset",
             borderRadius: 8,
@@ -467,7 +689,7 @@ const RoundUpMessage = ({ data, isChangeRound, vis, setVis }) => {
           <span
             style={{
               color: "rgba(0, 0, 0, 0.80)",
-              fontSize: 64,
+              fontSize: 50,
               fontFamily: "Pretendard",
               fontWeight: "600",
               wordWrap: "break-word",
@@ -479,7 +701,7 @@ const RoundUpMessage = ({ data, isChangeRound, vis, setVis }) => {
           <span
             style={{
               color: "rgba(0, 0, 0, 0.80)",
-              fontSize: 32,
+              fontSize: 24,
               fontFamily: "Pretendard",
               fontWeight: "600",
               wordWrap: "break-word",
@@ -517,7 +739,7 @@ const RoundUpMessage = ({ data, isChangeRound, vis, setVis }) => {
         <div
           style={{
             width: "80%",
-            height: "50%",
+            height: "70%",
             background: "rgba(255, 255, 255, 0.20)",
             boxShadow: "0px 0px 112.5px 44px rgba(255, 255, 255, 0.25) inset",
             borderRadius: 8,
@@ -531,7 +753,7 @@ const RoundUpMessage = ({ data, isChangeRound, vis, setVis }) => {
           <span
             style={{
               color: "rgba(0, 0, 0, 0.80)",
-              fontSize: 64,
+              fontSize: 50,
               fontFamily: "Pretendard",
               fontWeight: "600",
               wordWrap: "break-word",
@@ -543,7 +765,7 @@ const RoundUpMessage = ({ data, isChangeRound, vis, setVis }) => {
           <span
             style={{
               color: "rgba(0, 0, 0, 0.80)",
-              fontSize: 32,
+              fontSize: 24,
               fontFamily: "Pretendard",
               fontWeight: "600",
               wordWrap: "break-word",
@@ -583,24 +805,13 @@ const ScoreBoard = ({ authKey, setIsReload }) => {
     }
   };
 
-  return (
-    <div
-      style={{
-        width: "100%",
-        height: "10vh",
-        position: "relative",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
+  if (!isMobile) {
+    return (
       <div
         style={{
-          width: "35vw",
-          height: "100%",
-          background: "rgba(255, 255, 255, 0.01)",
-          boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.25) inset",
-          borderRadius: 8,
+          width: "100%",
+          height: "10vh",
+          position: "relative",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
@@ -608,79 +819,191 @@ const ScoreBoard = ({ authKey, setIsReload }) => {
       >
         <div
           style={{
-            width: "25%",
-            height: "70%",
-            background: "rgba(255, 0, 0, 0.15)",
+            width: "35vw",
+            height: "100%",
+            background: "rgba(255, 255, 255, 0.01)",
             boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.25) inset",
-            borderRadius: 16,
-            marginRight: "10%",
+            borderRadius: 8,
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
           }}
-          onClick={(e) =>
-            handleSubmitData({ event: e, authKey: authKey, winNumber: 1 })
-          }
         >
           <div
             style={{
-              color: "black",
-              fontSize: "180%",
-              fontFamily: "Pretendard",
-              fontWeight: "400",
-              wordWrap: "break-word",
-              textAlign: "center",
+              width: "25%",
+              height: "70%",
+              background: "rgba(255, 0, 0, 0.15)",
+              boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.25) inset",
+              borderRadius: 16,
+              marginRight: "10%",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
             }}
+            onClick={(e) =>
+              handleSubmitData({ event: e, authKey: authKey, winNumber: 1 })
+            }
           >
-            Red wins.
+            <div
+              style={{
+                color: "black",
+                fontSize: "180%",
+                fontFamily: "Pretendard",
+                fontWeight: "400",
+                wordWrap: "break-word",
+                textAlign: "center",
+              }}
+            >
+              Red wins.
+            </div>
           </div>
-        </div>
-        <div
-          style={{
-            textAlign: "center",
-            color: "white",
-            fontSize: 32,
-            fontFamily: "Pretendard",
-            fontWeight: "100",
-            wordWrap: "break-word",
-          }}
-        >
-          Score
-          <br />
-          {score + "/" + roundNum}
-        </div>
-        <div
-          style={{
-            width: "25%",
-            height: "70%",
-            background: "rgba(0, 26, 255, 0.15)",
-            boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.25) inset",
-            borderRadius: 16,
-            marginLeft: "10%",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-          onClick={(e) =>
-            handleSubmitData({ event: e, authKey: authKey, winNumber: 0 })
-          }
-        >
           <div
             style={{
-              color: "black",
-              fontSize: "180%",
-              fontFamily: "Pretendard",
-              fontWeight: "400",
-              wordWrap: "break-word",
               textAlign: "center",
+              color: "white",
+              fontSize: 32,
+              fontFamily: "Pretendard",
+              fontWeight: "100",
+              wordWrap: "break-word",
             }}
           >
-            Blue wins.
+            Score
+            <br />
+            {score + "/" + roundNum}
+          </div>
+          <div
+            style={{
+              width: "25%",
+              height: "70%",
+              background: "rgba(0, 26, 255, 0.15)",
+              boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.25) inset",
+              borderRadius: 16,
+              marginLeft: "10%",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+            onClick={(e) =>
+              handleSubmitData({ event: e, authKey: authKey, winNumber: 0 })
+            }
+          >
+            <div
+              style={{
+                color: "black",
+                fontSize: "180%",
+                fontFamily: "Pretendard",
+                fontWeight: "400",
+                wordWrap: "break-word",
+                textAlign: "center",
+              }}
+            >
+              Blue wins.
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    return (
+      <div
+        style={{
+          width: "100vw",
+          height: "10vh",
+          position: "relative",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <div
+          style={{
+            width: "70vw",
+            height: "100%",
+            background: "rgba(255, 255, 255, 0.01)",
+            boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.25) inset",
+            borderRadius: 8,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <div
+            style={{
+              width: "25%",
+              height: "40%",
+              background: "rgba(255, 0, 0, 0.15)",
+              boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.25) inset",
+              borderRadius: 4,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              marginRight: "10%",
+            }}
+            onClick={(e) =>
+              handleSubmitData({ event: e, authKey: authKey, winNumber: 1 })
+            }
+          >
+            <div
+              style={{
+                color: "black",
+                fontSize: 12,
+                fontFamily: "Pretendard",
+                fontWeight: "400",
+                wordWrap: "break-word",
+                textAlign: "center",
+              }}
+            >
+              Red wins.
+            </div>
+          </div>
+          <div
+            style={{
+              textAlign: "center",
+              color: "white",
+              fontSize: 16,
+              fontFamily: "Pretendard",
+              fontWeight: "100",
+              wordWrap: "break-word",
+            }}
+          >
+            Score
+            <br />
+            {score + "/" + roundNum}
+          </div>
+          <div
+            style={{
+              width: "25%",
+              height: "40%",
+              background: "rgba(0, 26, 255, 0.15)",
+              boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.25) inset",
+              borderRadius: 4,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              marginLeft: "10%",
+            }}
+            onClick={(e) =>
+              handleSubmitData({ event: e, authKey: authKey, winNumber: 0 })
+            }
+          >
+            <div
+              style={{
+                color: "black",
+                fontSize: 12,
+                fontFamily: "Pretendard",
+                fontWeight: "400",
+                wordWrap: "break-word",
+                textAlign: "center",
+              }}
+            >
+              Blue wins.
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 };
 
 const RoundMatchCountBar = ({ roundNum, matchNum }) => {
@@ -776,130 +1099,268 @@ const BeforeMatchView = ({ index, data, isVisible, setIsVisible }) => {
     position: position.toLowerCase(),
   });
 
-  return (
-    <div
-      style={{
-        width: "90vw",
-        height: "90vh",
-        position: "absolute",
-        top: "5vh",
-        left: "5vw",
-        background: "rgba(255, 255, 255, 0.90)",
-        borderRadius: 8,
-        border: "3px black solid",
-        backdropFilter: "blur(40px)",
-        display: "flex",
-        paddingTop: 40,
-        flexDirection: "column",
-        justifyContent: "flex-start",
-        visibility: isVisible[index] ? "visible" : "hidden",
-        zIndex: 2,
-      }}
-      onClick={() => handleHistoryInVisible()}
-    >
+  if (!isMobile) {
+    return (
       <div
         style={{
-          width: "100%",
-          textAlign: "left",
-
+          width: "90vw",
+          height: "90vh",
+          position: "absolute",
+          top: "5vh",
+          left: "5vw",
+          background: "rgba(255, 255, 255, 0.90)",
+          borderRadius: 8,
+          border: "3px black solid",
+          backdropFilter: "blur(40px)",
           display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-between",
+          paddingTop: 40,
+          flexDirection: "column",
+          justifyContent: "flex-start",
+          visibility: isVisible[index] ? "visible" : "hidden",
+          zIndex: 2,
         }}
+        onClick={() => handleHistoryInVisible()}
       >
         <div
           style={{
+            width: "100%",
+            textAlign: "left",
+
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+          }}
+        >
+          <div
+            style={{
+              marginLeft: 50,
+              marginBottom: 20,
+              left: 50,
+              color: "rgba(132.81, 132.81, 132.81, 0.80)",
+              fontSize: 32,
+              fontFamily: "Pretendard",
+              fontWeight: "700",
+              wordWrap: "break-word",
+            }}
+          >
+            Current Pick:
+          </div>
+          <div></div>
+          <div
+            style={{
+              textAlign: "right",
+              marginRight: 70,
+              fontSize: 24,
+              fontFamily: "Pretendard",
+              fontWeight: "300",
+              whiteSpace: "pre-wrap",
+            }}
+          >
+            {
+              "아래는 해당 플레이어의 대전 기록입니다.\n그림자가 있는 초상화는 해당 플레이어의 포지션을 나타냅니다."
+            }
+          </div>
+        </div>
+        <div
+          style={{
+            width: 163,
+            height: 24,
+            marginLeft: 16,
+            color: team === "Red" ? "#A13F3F" : "#001D82",
+            fontSize: 20,
+            fontFamily: "Pretendard",
+            fontWeight: "600",
+            wordWrap: "break-word",
+          }}
+        >
+          {`Team ${team}`}
+        </div>
+        <div
+          style={{
+            width: "100%",
+            height: 48,
+            textAlign: "left",
             marginLeft: 50,
-            marginBottom: 20,
-            left: 50,
-            color: "rgba(132.81, 132.81, 132.81, 0.80)",
-            fontSize: 32,
-            fontFamily: "Pretendard",
-            fontWeight: "700",
-            wordWrap: "break-word",
           }}
         >
-          Current Pick:
+          <span
+            style={{
+              color: "black",
+              fontSize: 48,
+              fontFamily: "Pretendard",
+              fontWeight: "700",
+              wordWrap: "break-word",
+            }}
+          >
+            {position}
+          </span>
+          <span
+            style={{
+              color: "black",
+              fontSize: 48,
+              fontFamily: "Pretendard",
+              fontWeight: "300",
+              wordWrap: "break-word",
+            }}
+          >
+            {" "}
+            {champion}
+          </span>
         </div>
-        <div></div>
         <div
           style={{
-            textAlign: "right",
-            marginRight: 70,
-            fontSize: 24,
-            fontFamily: "Pretendard",
-            fontWeight: "300",
-            whiteSpace: "pre-wrap",
+            width: "90%",
+            height: "70%",
+            overflowX: "hidden",
+            overflow: "auto",
+            border: "1px solid black",
+            alignSelf: "center",
+            marginTop: 60,
+            justifySelf: "center",
           }}
         >
-          {
-            "아래는 해당 플레이어의 대전 기록입니다.\n그림자가 있는 초상화는 해당 플레이어의 포지션을 나타냅니다."
-          }
+          {Array.from({ length: 10 }, (k, index) => (
+            <BeforeMatchCard
+              history={historyData.history}
+              key={index}
+              index={index}
+            />
+          ))}
         </div>
       </div>
+    );
+  } else {
+    return (
       <div
         style={{
-          width: 163,
-          height: 24,
-          marginLeft: 16,
-          color: team === "Red" ? "#A13F3F" : "#001D82",
-          fontSize: 20,
-          fontFamily: "Pretendard",
-          fontWeight: "600",
-          wordWrap: "break-word",
+          width: "90vw",
+          height: "80vh",
+          position: "absolute",
+          top: "5vh",
+          left: "5vw",
+          background: "rgba(255, 255, 255, 0.90)",
+          borderRadius: 8,
+          border: "3px black solid",
+          backdropFilter: "blur(40px)",
+          display: "flex",
+          paddingTop: 40,
+          flexDirection: "column",
+          justifyContent: "flex-start",
+          visibility: isVisible[index] ? "visible" : "hidden",
+          zIndex: 2,
         }}
+        onClick={() => handleHistoryInVisible()}
       >
-        {`Team ${team}`}
-      </div>
-      <div
-        style={{ width: "100%", height: 48, textAlign: "left", marginLeft: 50 }}
-      >
-        <span
+        <div
           style={{
-            color: "black",
-            fontSize: 48,
-            fontFamily: "Pretendard",
-            fontWeight: "700",
-            wordWrap: "break-word",
+            width: "100%",
+            textAlign: "left",
+
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
           }}
         >
-          {position}
-        </span>
-        <span
+          <div
+            style={{
+              marginLeft: 20,
+              marginBottom: 20,
+              left: 50,
+              color: "rgba(132.81, 132.81, 132.81, 0.80)",
+              fontSize: 16,
+              fontFamily: "Pretendard",
+              fontWeight: "700",
+              wordWrap: "break-word",
+            }}
+          >
+            Current Pick:
+          </div>
+          <div></div>
+          <div
+            style={{
+              textAlign: "right",
+              marginRight: 20,
+              fontSize: 12,
+              fontFamily: "Pretendard",
+              fontWeight: "300",
+              whiteSpace: "pre-wrap",
+            }}
+          >
+            {
+              "아래는 해당 플레이어의 대전 기록입니다.\n그림자가 있는 초상화는 해당 플레이어의 포지션을 나타냅니다."
+            }
+          </div>
+        </div>
+        <div
           style={{
-            color: "black",
-            fontSize: 48,
+            width: 163,
+            height: 24,
+            marginLeft: 20,
+            color: team === "Red" ? "#A13F3F" : "#001D82",
+            fontSize: 12,
             fontFamily: "Pretendard",
-            fontWeight: "300",
+            fontWeight: "600",
             wordWrap: "break-word",
+            textAlign: "left",
           }}
         >
-          {" "}
-          {champion}
-        </span>
+          {`Team ${team}`}
+        </div>
+        <div
+          style={{
+            width: "100%",
+            height: 24,
+            textAlign: "left",
+            marginLeft: 20,
+          }}
+        >
+          <span
+            style={{
+              color: "black",
+              fontSize: 24,
+              fontFamily: "Pretendard",
+              fontWeight: "700",
+              wordWrap: "break-word",
+            }}
+          >
+            {position}
+          </span>
+          <span
+            style={{
+              color: "black",
+              fontSize: 24,
+              fontFamily: "Pretendard",
+              fontWeight: "300",
+              wordWrap: "break-word",
+            }}
+          >
+            {" "}
+            {champion}
+          </span>
+        </div>
+        <div
+          style={{
+            width: "90%",
+            height: "70%",
+            overflowX: "hidden",
+            overflow: "auto",
+            border: "1px solid black",
+            alignSelf: "center",
+            marginTop: 30,
+            justifySelf: "center",
+          }}
+        >
+          {Array.from({ length: 10 }, (k, index) => (
+            <BeforeMatchCard
+              history={historyData.history}
+              key={index}
+              index={index}
+            />
+          ))}
+        </div>
       </div>
-      <div
-        style={{
-          width: "90%",
-          height: "70%",
-          overflowX: "hidden",
-          overflow: "auto",
-          border: "1px solid black",
-          alignSelf: "center",
-          marginTop: 60,
-          justifySelf: "center",
-        }}
-      >
-        {Array.from({ length: 10 }, (k, index) => (
-          <BeforeMatchCard
-            history={historyData.history}
-            key={index}
-            index={index}
-          />
-        ))}
-      </div>
-    </div>
-  );
+    );
+  }
 };
 
 const TenChampionTemplate = ({
@@ -911,127 +1372,249 @@ const TenChampionTemplate = ({
 }) => {
   console.log("blueTeamData", blueTeamData);
   console.log("redTeamData", redTeamData);
-  return (
-    <div style={{ position: "relative", width: "100vw", height: "85vh" }}>
-      <div
-        style={{
-          position: "relative",
-          width: "100%",
-          height: "40%",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          minWidth: 800,
-        }}
-      >
-        <ChampionCard
-          team="Red"
-          champion={redTeamData.names.top}
-          position={"Team Red Top"}
-          F={() => handleHistoryVisible(0)}
-          mostChampion={redTeamData.mosts.top}
-          winRate={redTeamData.winRates.top}
-        />
-        <ChampionCard
-          team="Red"
-          champion={redTeamData.names.jungle}
-          position={"Team Red Jungle"}
-          F={() => handleHistoryVisible(1)}
-          mostChampion={redTeamData.mosts.jungle}
-          winRate={redTeamData.winRates.jungle}
-        />
-        <ChampionCard
-          team="Red"
-          champion={redTeamData.names.mid}
-          position={"Team Red Mid"}
-          F={() => handleHistoryVisible(2)}
-          mostChampion={redTeamData.mosts.mid}
-          winRate={redTeamData.winRates.mid}
-        />
-        <ChampionCard
-          team="Red"
-          champion={redTeamData.names.adc}
-          position={"Team Red Adc"}
-          F={() => handleHistoryVisible(3)}
-          mostChampion={redTeamData.mosts.adc}
-          winRate={redTeamData.winRates.adc}
-        />
-        <ChampionCard
-          team="Red"
-          champion={redTeamData.names.support}
-          position={"Team Red Support"}
-          F={() => handleHistoryVisible(4)}
-          mostChampion={redTeamData.mosts.support}
-          winRate={redTeamData.winRates.support}
-        />
+
+  if (!isMobile) {
+    return (
+      <div style={{ position: "relative", width: "100vw", height: "85vh" }}>
+        <div
+          style={{
+            position: "relative",
+            width: "100%",
+            height: "40%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            minWidth: 800,
+          }}
+        >
+          <ChampionCard
+            team="Red"
+            champion={redTeamData.names.top}
+            position={"Team Red Top"}
+            F={() => handleHistoryVisible(0)}
+            mostChampion={redTeamData.mosts.top}
+            winRate={redTeamData.winRates.top}
+          />
+          <ChampionCard
+            team="Red"
+            champion={redTeamData.names.jungle}
+            position={"Team Red Jungle"}
+            F={() => handleHistoryVisible(1)}
+            mostChampion={redTeamData.mosts.jungle}
+            winRate={redTeamData.winRates.jungle}
+          />
+          <ChampionCard
+            team="Red"
+            champion={redTeamData.names.mid}
+            position={"Team Red Mid"}
+            F={() => handleHistoryVisible(2)}
+            mostChampion={redTeamData.mosts.mid}
+            winRate={redTeamData.winRates.mid}
+          />
+          <ChampionCard
+            team="Red"
+            champion={redTeamData.names.adc}
+            position={"Team Red Adc"}
+            F={() => handleHistoryVisible(3)}
+            mostChampion={redTeamData.mosts.adc}
+            winRate={redTeamData.winRates.adc}
+          />
+          <ChampionCard
+            team="Red"
+            champion={redTeamData.names.support}
+            position={"Team Red Support"}
+            F={() => handleHistoryVisible(4)}
+            mostChampion={redTeamData.mosts.support}
+            winRate={redTeamData.winRates.support}
+          />
+        </div>
+        <div
+          style={{
+            position: "relative",
+            width: "100%",
+            height: "15%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            minWidth: 800,
+          }}
+        >
+          <ScoreBoard authKey={authKey} setIsReload={setIsReload} />
+        </div>
+        <div
+          style={{
+            position: "relative",
+            width: "100%",
+            height: "40%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            minWidth: 800,
+          }}
+        >
+          <ChampionCard
+            team="Blue"
+            champion={blueTeamData.names.top}
+            position={"Team Blue Top"}
+            F={() => handleHistoryVisible(5)}
+            mostChampion={blueTeamData.mosts.top}
+            winRate={blueTeamData.winRates.top}
+          />
+          <ChampionCard
+            team="Blue"
+            champion={blueTeamData.names.jungle}
+            position={"Team Blue Jungle"}
+            F={() => handleHistoryVisible(6)}
+            mostChampion={blueTeamData.mosts.jungle}
+            winRate={blueTeamData.winRates.jungle}
+          />
+          <ChampionCard
+            team="Blue"
+            champion={blueTeamData.names.mid}
+            position={"Team Blue Mid"}
+            F={() => handleHistoryVisible(7)}
+            mostChampion={blueTeamData.mosts.mid}
+            winRate={blueTeamData.winRates.mid}
+          />
+          <ChampionCard
+            team="Blue"
+            champion={blueTeamData.names.adc}
+            position={"Team Blue Adc"}
+            F={() => handleHistoryVisible(8)}
+            mostChampion={blueTeamData.mosts.adc}
+            winRate={blueTeamData.winRates.adc}
+          />
+          <ChampionCard
+            team="Blue"
+            champion={blueTeamData.names.support}
+            position={"Team Blue Support"}
+            F={() => handleHistoryVisible(9)}
+            mostChampion={blueTeamData.mosts.support}
+            winRate={blueTeamData.winRates.support}
+          />
+        </div>
       </div>
-      <div
-        style={{
-          position: "relative",
-          width: "100%",
-          height: "15%",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          minWidth: 800,
-        }}
-      >
-        <ScoreBoard authKey={authKey} setIsReload={setIsReload} />
+    );
+  } else {
+    return (
+      <div style={{ position: "relative", width: "100vw", height: "85vh" }}>
+        <div
+          style={{
+            position: "relative",
+            width: "100%",
+            height: "40%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <ChampionCard
+            team="Red"
+            champion={redTeamData.names.top}
+            position={"Red Top"}
+            F={() => handleHistoryVisible(0)}
+            mostChampion={redTeamData.mosts.top}
+            winRate={redTeamData.winRates.top}
+          />
+          <ChampionCard
+            team="Red"
+            champion={redTeamData.names.jungle}
+            position={"Red Jungle"}
+            F={() => handleHistoryVisible(1)}
+            mostChampion={redTeamData.mosts.jungle}
+            winRate={redTeamData.winRates.jungle}
+          />
+          <ChampionCard
+            team="Red"
+            champion={redTeamData.names.mid}
+            position={"Red Mid"}
+            F={() => handleHistoryVisible(2)}
+            mostChampion={redTeamData.mosts.mid}
+            winRate={redTeamData.winRates.mid}
+          />
+          <ChampionCard
+            team="Red"
+            champion={redTeamData.names.adc}
+            position={"Red Adc"}
+            F={() => handleHistoryVisible(3)}
+            mostChampion={redTeamData.mosts.adc}
+            winRate={redTeamData.winRates.adc}
+          />
+          <ChampionCard
+            team="Red"
+            champion={redTeamData.names.support}
+            position={"Red Support"}
+            F={() => handleHistoryVisible(4)}
+            mostChampion={redTeamData.mosts.support}
+            winRate={redTeamData.winRates.support}
+          />
+        </div>
+        <div
+          style={{
+            position: "relative",
+            width: "100%",
+            height: "15%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <ScoreBoard authKey={authKey} setIsReload={setIsReload} />
+        </div>
+        <div
+          style={{
+            position: "relative",
+            width: "100%",
+            height: "40%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <ChampionCard
+            team="Blue"
+            champion={blueTeamData.names.top}
+            position={"Blue Top"}
+            F={() => handleHistoryVisible(5)}
+            mostChampion={blueTeamData.mosts.top}
+            winRate={blueTeamData.winRates.top}
+          />
+          <ChampionCard
+            team="Blue"
+            champion={blueTeamData.names.jungle}
+            position={"Blue Jungle"}
+            F={() => handleHistoryVisible(6)}
+            mostChampion={blueTeamData.mosts.jungle}
+            winRate={blueTeamData.winRates.jungle}
+          />
+          <ChampionCard
+            team="Blue"
+            champion={blueTeamData.names.mid}
+            position={"Blue Mid"}
+            F={() => handleHistoryVisible(7)}
+            mostChampion={blueTeamData.mosts.mid}
+            winRate={blueTeamData.winRates.mid}
+          />
+          <ChampionCard
+            team="Blue"
+            champion={blueTeamData.names.adc}
+            position={"Blue Adc"}
+            F={() => handleHistoryVisible(8)}
+            mostChampion={blueTeamData.mosts.adc}
+            winRate={blueTeamData.winRates.adc}
+          />
+          <ChampionCard
+            team="Blue"
+            champion={blueTeamData.names.support}
+            position={"Blue Support"}
+            F={() => handleHistoryVisible(9)}
+            mostChampion={blueTeamData.mosts.support}
+            winRate={blueTeamData.winRates.support}
+          />
+        </div>
       </div>
-      <div
-        style={{
-          position: "relative",
-          width: "100%",
-          height: "40%",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          minWidth: 800,
-        }}
-      >
-        <ChampionCard
-          team="Blue"
-          champion={blueTeamData.names.top}
-          position={"Team Blue Top"}
-          F={() => handleHistoryVisible(5)}
-          mostChampion={blueTeamData.mosts.top}
-          winRate={blueTeamData.winRates.top}
-        />
-        <ChampionCard
-          team="Blue"
-          champion={blueTeamData.names.jungle}
-          position={"Team Blue Jungle"}
-          F={() => handleHistoryVisible(6)}
-          mostChampion={blueTeamData.mosts.jungle}
-          winRate={blueTeamData.winRates.jungle}
-        />
-        <ChampionCard
-          team="Blue"
-          champion={blueTeamData.names.mid}
-          position={"Team Blue Mid"}
-          F={() => handleHistoryVisible(7)}
-          mostChampion={blueTeamData.mosts.mid}
-          winRate={blueTeamData.winRates.mid}
-        />
-        <ChampionCard
-          team="Blue"
-          champion={blueTeamData.names.adc}
-          position={"Team Blue Adc"}
-          F={() => handleHistoryVisible(8)}
-          mostChampion={blueTeamData.mosts.adc}
-          winRate={blueTeamData.winRates.adc}
-        />
-        <ChampionCard
-          team="Blue"
-          champion={blueTeamData.names.support}
-          position={"Team Blue Support"}
-          F={() => handleHistoryVisible(9)}
-          mostChampion={blueTeamData.mosts.support}
-          winRate={blueTeamData.winRates.support}
-        />
-      </div>
-    </div>
-  );
+    );
+  }
 };
 
 const MatchView = () => {
@@ -1060,8 +1643,7 @@ const MatchView = () => {
   };
 
   let location = useLocation();
-  // const { auth } = location.state;
-  const { auth } = "123";
+  const { auth } = location.state;
 
   const rawData = useMatchData({
     authKey: auth,

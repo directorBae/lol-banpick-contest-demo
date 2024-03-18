@@ -80,6 +80,43 @@ const SubmitButton = styled.button`
   `}
 `;
 
+const DescriptionContainer = styled.div`
+  width: 100%;
+  color: #252525;
+  font-family: Pretendard;
+  font-weight: 300;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+
+  ${media.mobile`
+  width: 80%;
+  font-size: 14px;
+  margin-top: 70px;
+  margin-bottom: 70px;
+  `}
+
+  ${media.desktop`
+  width: 100%;
+  font-size: 30px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  `}
+`;
+
+const ButtonContainer = styled.div`
+  ${media.mobile`
+  width: 40%;
+  height: 40px;
+  font-size: 20px;
+  `}
+
+  ${media.desktop`
+  width: 579px;
+  height: 99px;
+  font-size: 30px;
+  `}
+`;
+
 const DescriptionWindow = ({ submitStatus, navigator, authKey }) => {
   return (
     <div
@@ -105,35 +142,22 @@ const DescriptionWindow = ({ submitStatus, navigator, authKey }) => {
       >
         게임 방법
       </div>
-      <div
-        style={{
-          width: "100%",
-          color: "#252525",
-          fontSize: 32,
-          fontFamily: "Pretendard",
-          fontWeight: "300",
-          wordWrap: "break-word",
-          whiteSpace: "pre-wrap",
-          marginTop: 50,
-          marginBottom: 50,
-        }}
-      >
+      <DescriptionContainer>
         {
           "여러분은 롤 게임의 챔프 픽을 보게 됩니다.\n\n이때 챔프를 클릭하면 해당 게이머의 이전 10게임의 전적을 볼 수 있습니다.\n\n여러분은 해당 정보를 보고 해당 게임에서 블루 팀이 이겼을지, 레드 팀이 이겼을지를 예측하면 됩니다. \n\n한 라운드에 대해 예측률이 50%를 넘지 못할 경우 다음 라운드에 진출할 수 없습니다."
         }
-      </div>
-      <div style={{ width: 529, height: 99, position: "relative" }}>
+      </DescriptionContainer>
+      <ButtonContainer>
         <div
           style={{
-            width: 529,
-            height: 99,
+            width: "100%",
+            height: "100%",
             background:
               "linear-gradient(155deg, rgba(0, 25.50, 255, 0.15) 0%, rgba(255, 0, 0, 0.15) 100%)",
             borderRadius: 8,
             border: "1px black solid",
             textAlign: "center",
             color: "white",
-            fontSize: 32,
             fontFamily: "Pretendard",
             fontWeight: "700",
             wordWrap: "break-word",
@@ -145,7 +169,7 @@ const DescriptionWindow = ({ submitStatus, navigator, authKey }) => {
         >
           예측 시작하기
         </div>
-      </div>
+      </ButtonContainer>
     </div>
   );
 };
@@ -163,7 +187,7 @@ const SubmitForm = () => {
       return;
     }
     e.preventDefault();
-    const response = await fetch("http://10.20.23.199/api/user/auth", {
+    const response = await fetch("/api/user/auth", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
